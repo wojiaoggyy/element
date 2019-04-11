@@ -93,6 +93,7 @@
               @pick="handleDatePick"
               :selection-mode="selectionMode"
               :first-day-of-week="firstDayOfWeek"
+              :signDays="signDays"
               :value="value"
               :default-value="defaultValue ? new Date(defaultValue) : null"
               :date="date"
@@ -517,6 +518,7 @@
         disabledDate: '',
         selectableRange: [],
         firstDayOfWeek: 7,
+        signDays: [],
         showWeekNumber: false,
         timePickerVisible: false,
         format: '',

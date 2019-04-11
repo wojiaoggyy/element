@@ -5,6 +5,7 @@
     :readonly="!editable || readonly || type === 'dates' || type === 'week'"
     :disabled="pickerDisabled"
     :size="pickerSize"
+    :signDays="signDays"
     :name="name"
     v-bind="firstInputId"
     v-if="!ranged"
@@ -377,6 +378,7 @@ export default {
       type: String,
       default: 'left'
     },
+    signDays: Array,
     value: {},
     defaultValue: {},
     defaultTime: {},
@@ -822,6 +824,7 @@ export default {
 
     mountPicker() {
       this.picker = new Vue(this.panel).$mount();
+      this.picker.signDays = this.signDays;
       this.picker.defaultValue = this.defaultValue;
       this.picker.defaultTime = this.defaultTime;
       this.picker.popperClass = this.popperClass;

@@ -114,6 +114,7 @@
               selection-mode="range"
               :date="leftDate"
               :default-value="defaultValue"
+              :signDays="signDays"
               :min-date="minDate"
               :max-date="maxDate"
               :range-state="rangeState"
@@ -153,6 +154,7 @@
               selection-mode="range"
               :date="rightDate"
               :default-value="defaultValue"
+              :signDays="signDays"
               :min-date="minDate"
               :max-date="maxDate"
               :range-state="rangeState"
@@ -332,6 +334,7 @@
         visible: '',
         disabledDate: '',
         firstDayOfWeek: 7,
+        signDays: [],
         minTimePickerVisible: false,
         maxTimePickerVisible: false,
         format: '',

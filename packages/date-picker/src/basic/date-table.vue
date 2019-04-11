@@ -23,6 +23,7 @@
         <div>
           <span>
             {{ cell.text }}
+            <i :class="getCellClassesIcon(cell)"></i>
           </span>
         </div>
       </td>
@@ -30,6 +31,22 @@
     </tbody>
   </table>
 </template>
+
+<style type="text/css">
+  .nosign{
+    width: 0;
+    height: 0;
+  }
+  .sign{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #409EFF;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+</style>
 
 <script>
   import { getFirstDayOfMonth, getDayCountOfMonth, getWeekNumber, getStartDateOfMonth, prevDate, nextDate, isDate, clearTime as _clearTime} from '../util';
@@ -66,6 +83,8 @@
       },
 
       value: {},
+
+      signDays: Array,
 
       defaultValue: {
         validator(val) {
@@ -244,6 +263,19 @@
         return this.year === value.getFullYear() &&
           this.month === value.getMonth() &&
           Number(cell.text) === value.getDate();
+      },
+
+      getCellClassesIcon(cell) {
+        let calssname = 'nosign';
+        this.signDays.forEach(item=>{
+          let year = parseInt(item.substr(0, 4), 10);
+          let month = parseInt(item.substr(5, 2), 10);
+          let day = parseInt(item.substr(8, 2), 10);
+          if (year === this.year && month === this.month + 1 && day === cell.text && cell.type === 'normal') {
+            calssname = 'nosign sign';
+          }
+        });
+        return calssname;
       },
 
       getCellClasses(cell) {
